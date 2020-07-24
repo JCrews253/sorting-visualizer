@@ -7,7 +7,7 @@ import { GetInsertionSortData } from './algorithms/InsertionSort';
 import { GetHeapSortData } from './algorithms/HeapSort';
 
 const MIN_ELEMENT_SIZE_PX = 15;
-const MAX_ELEMENT_SIZE_PX = 900;
+const MAX_ELEMENT_SIZE_PX = window.innerHeight;
 const DEFAULT_ITERATION_SPEED_MS = 10;
 const DEFAULT_ARRAY_SIZE = 50 ;
 
