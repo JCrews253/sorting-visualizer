@@ -31,8 +31,10 @@ function App() {
   const [sortingState, setSortingState] = useState(false)
   const [arraySize, setArraySize] = useState(DEFAULT_ARRAY_SIZE)
   const [speedState, setSpeedState] = useState(DEFAULT_ITERATION_SPEED_MS)
+  const [hasSolution,setHasSolution] = useState(false)
 
   const HandleStart = () => {
+    if(hasSolution) setState(genRandomArray(state.length))
     setSortingState(true)
     const selectedAlgo = document.getElementById('algo-select') as HTMLInputElement
     let x = selectedAlgo.value === 'mergeSort' ? MergeSort() : 
@@ -44,6 +46,7 @@ function App() {
   const HandleReset = () => {
     SetDefaultColors()
     setState(genRandomArray(arraySize))
+    setHasSolution(false)
   }
 
   const HandleSizeChange = () => {
@@ -51,6 +54,7 @@ function App() {
     SetDefaultColors()
     setArraySize(parseInt(slider.value))
     setState(genRandomArray(parseInt(slider.value)))
+    setHasSolution(false)
   }
 
   const HandleSpeedChange = () => {
@@ -82,6 +86,7 @@ function App() {
         if(j === sb.length-1) {
           sb[j].style.backgroundColor = ColorGenerator(parseInt(sb[j].style.height))
           setSortingState(false)
+          setHasSolution(true)
         }
       },  j * speedState)
     }
