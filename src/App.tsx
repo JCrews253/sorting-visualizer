@@ -5,6 +5,7 @@ import { GetMergeSortData } from './algorithms/MergeSort';
 import { GetBubbleSortData } from './algorithms/BubbleSort';
 import { GetInsertionSortData } from './algorithms/InsertionSort';
 import { GetHeapSortData } from './algorithms/HeapSort';
+import { GetQuickSortData } from './algorithms/QuickSort';
 
 const MIN_ELEMENT_SIZE_PX = 15;
 const MAX_ELEMENT_SIZE_PX = window.innerHeight;
@@ -40,7 +41,8 @@ function App() {
     let x = selectedAlgo.value === 'mergeSort' ? MergeSort() : 
       selectedAlgo.value === 'bubbleSort' ? BubbleSort() : 
       selectedAlgo.value === 'insertionSort' ? InsertionSort() :  
-      selectedAlgo.value === 'heapSort' ? HeapSort() : null
+      selectedAlgo.value === 'heapSort' ? HeapSort() : 
+      selectedAlgo.value === 'quickSort' ? QuickSort() : null
   }
 
   const HandleReset = () => {
@@ -164,6 +166,22 @@ function App() {
     }
   }
 
+  const QuickSort = () => {
+    const intData = GetQuickSortData(state.slice())
+    const sb = document.getElementsByClassName('sorting-bar') as HTMLCollectionOf<HTMLElement>
+    for(let i = 0; i < intData.length; i++){
+      setTimeout( ()=> {
+        SetDefaultColors()
+        sb[intData[i].iIndex].style.backgroundColor = 'white'
+        sb[intData[i].jIndex].style.backgroundColor = 'white'
+        sb[intData[i].pivot].style.backgroundColor = 'white'
+        sb[intData[i].iIndex].style.height = `${intData[i].iValue}px`
+        sb[intData[i].jIndex].style.height = `${intData[i].jValue}px`
+        if(i === intData.length-1) FinishAnimation()
+      }, i * speedState)
+    }
+  }
+
   return (
     <div className="App">
       <div className='toolbar'>
@@ -192,9 +210,10 @@ function App() {
             disabled= {sortingState}
             >
             <option value='mergeSort'>Merge</option>
+            <option value='quickSort'>Quick</option>
+            <option value='heapSort'>Heap</option>
             <option value='bubbleSort'>Bubble</option>
             <option value='insertionSort'>Insertion</option>
-            <option value='heapSort'>Heap</option>
           </select>
         </div>
         <div className='toolbar-div'>
