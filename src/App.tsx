@@ -69,7 +69,7 @@ function App() {
   }
 
   const HandleHomeClick = () => {
-    
+    window.open('https://jcrews253.github.io/portfolio/#/projects','_self')
   }
 
   const SetDefaultColors = () => {
