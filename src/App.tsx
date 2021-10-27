@@ -38,11 +38,21 @@ function App() {
     if(hasSolution) setState(genRandomArray(state.length))
     setSortingState(true)
     const selectedAlgo = document.getElementById('algo-select') as HTMLInputElement
-    let x = selectedAlgo.value === 'mergeSort' ? MergeSort() : 
-      selectedAlgo.value === 'bubbleSort' ? BubbleSort() : 
-      selectedAlgo.value === 'insertionSort' ? InsertionSort() :  
-      selectedAlgo.value === 'heapSort' ? HeapSort() : 
-      selectedAlgo.value === 'quickSort' ? QuickSort() : null
+    if(selectedAlgo.value === 'mergeSort'){
+      MergeSort()
+    }
+    else if(selectedAlgo.value === 'bubbleSort'){
+      BubbleSort()
+    }
+    else if(selectedAlgo.value === 'insertionSort'){
+      InsertionSort()
+    }
+    else if(selectedAlgo.value === 'heapSort'){
+      HeapSort()
+    }
+    else if(selectedAlgo.value === 'quickSort'){
+      QuickSort()
+    }
   }
 
   const HandleReset = () => {
